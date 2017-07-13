@@ -50,6 +50,20 @@ body::-webkit-scrollbar {
   justify-content: space-around;
 }
 
+#twitch-tab {
+  position: relative;
+}
+
+.live-dot {
+  top: 0;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+}
+
 .tab-link {
   opacity: 0.8;
   color: #fff;
@@ -73,11 +87,40 @@ body::-webkit-scrollbar {
 .content {
   flex: 8;
   display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
-.tab-content {
+.live {
+  width: 100%;
   flex: 1;
+  color: #6f9e5a;
+  display: flex;
+  align-items: center;
+  font-family: 'Futura';
+  font-size: 20px;
+  justify-content: center;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+
+.live a {
+  color: #fff;
+  font-size: 15px;
+  font-family: 'Futura';
+  margin-left: 15px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  background-color: #6f9e5a;
+  text-decoration: none;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+
+.live a:hover {
+  background-color: #3d5930;
+}
+
+.tab-content {
+  flex: 9;
   display: none;
   padding: 10px;
   overflow-y: scroll;
@@ -132,15 +175,3 @@ body::-webkit-scrollbar {
   color: #6f9e5a;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
-
-/*.twitch-card .infos a {
-  font-family: 'Futura';
-  font-size: 15px;
-  color: ;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
-  text-decoration: none;
-}
-
-.twitch-card .infos a:hover {
-  color: #3d5930;
-}*/

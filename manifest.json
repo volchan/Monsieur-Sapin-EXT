@@ -18,5 +18,5 @@
       "main": "Volchan",
       "website": "www.volchan.fr"
   },
-  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'"
+  "content_security_policy": "script-src 'self' https://*.twitter.com https://*.twitter.com https://*.twimg.com; object-src 'self'"  
 }

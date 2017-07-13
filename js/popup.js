@@ -1,15 +1,3 @@
-$('#twitch-btn').click(function() {
-  chrome.tabs.create({url: 'https://www.twitch.tv/monsieursapin'});
-});
-
-$('#website-btn').click(function() {
-  chrome.tabs.create({url: 'http://monsieursapin.fr/'});
-});
-
-$('#twitter-btn').click(function() {
-  chrome.tabs.create({url: 'https://twitter.com/monsieursapin_'});
-});
-
 window.addEventListener('click', function(e){
     if(e.target.href!==undefined){
         chrome.tabs.create({url: e.target.href})
