@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Monsieur Sapin extension",
-  "description": "Suivez l'actualitée de Monsieur Sapin",
+  "description": "Suivez l'actualité de Monsieur Sapin",
   "version": "1.0",
   "permissions": ["http://*/*", "https://*/*", "notifications", "tabs"],
   "browser_action": {
@@ -18,5 +18,5 @@
       "main": "Volchan",
       "website": "www.volchan.fr"
   },
-  "content_security_policy": "script-src 'self' https://*.twitter.com https://*.twitter.com https://*.twimg.com; object-src 'self'"  
+  "content_security_policy": "script-src 'self' https://*.twitter.com https://*.twitter.com https://*.twimg.com; object-src 'self'"
 }
