@@ -10,4 +10,13 @@ $(".tab-link").on("click", function(e){
   $(this).addClass('active');
   $('.tab-content').removeClass('active');
   $("#" + tab_id).addClass('active');
+  if (tab_id == "twitch") {
+    getTwitchVods();
+  } else if (tab_id == "website") {
+    getFeed();
+  }
+});
+
+$(document).ready(function() {
+  getTwitchVods();
 });
