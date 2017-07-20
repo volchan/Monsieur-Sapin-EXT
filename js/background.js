@@ -4,7 +4,7 @@ var userNotified = false;
 var channel = "monsieursapin";
 var titleData = "Monsieur Sapin est live !";
 var channelLight = "Monsieur Sapin";
-var clientId = "You won't get it here :D";
+var clientId = "You won't get it here ;)";
 
 function callback() {
   var xhr_object = new XMLHttpRequest();
