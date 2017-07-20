@@ -1,7 +1,14 @@
 @font-face {
-    font-family: 'Futura';
-    src: url('/fonts/Futura.ttf');
+    font-family: 'OpenSans';
+    src: url('/fonts/OpenSans-Regular.ttf');
 }
+
+@font-face {
+    font-family: 'OpenSans-bold';
+    src: url('/fonts/OpenSansCondensed-Bold.ttf');
+}
+
+@keyframes blink {50% { background-color: transparent }}
 
 body {
   margin: 0;
@@ -36,52 +43,54 @@ body::-webkit-scrollbar {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  background-color: #6f9e5a;
+  align-items: stretch;
+  background-color: #3d5930;
   box-shadow: 0 2px 2px -2px #333;
 }
 
 .tabs {
   padding: 0;
   flex: 1;
-  height: 29px;
   list-style: none;
   display: flex;
-  justify-content: space-around;
 }
 
 #twitch-tab {
   position: relative;
 }
 
-.live-dot {
-  top: 0;
-  right: -5px;
+#live-dot {
+  top: 6px;
+  right: 33px;
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: red;
+  background-color: #ed3838;
   position: absolute;
+  animation: 2s blink infinite;
 }
 
 .tab-link {
-  opacity: 0.8;
-  color: #fff;
+  color: #6f9e5a;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 20px;
-  font-family: 'Futura';
+  font-family: 'OpenSans-bold';
   transition: all 0.25s ease;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
 
 .tab-link:hover {
-  opacity: 1;
+  color: #fff;
   cursor: pointer;
-  border-bottom: 4px solid #3d5930;
+  background-color: #37502b;
 }
 
 .tab-link.active {
-  opacity: 1;
-  border-bottom: 4px solid #3d5930;
+  color: #fff;
+  background-color: #37502b;
 }
 
 .content {
@@ -91,40 +100,45 @@ body::-webkit-scrollbar {
   justify-content: center;
 }
 
-.live {
-  width: 100%;
-  flex: 1;
+#btn {
   color: #6f9e5a;
   display: flex;
   align-items: center;
-  font-family: 'Futura';
+  padding: 5px;
+  font-family: 'OpenSans';
   font-size: 20px;
   justify-content: center;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  z-index: 3 ;
 }
 
-.live a {
+#btn a {
   color: #fff;
-  font-size: 15px;
-  font-family: 'Futura';
-  margin-left: 15px;
-  padding: 5px 10px;
+  width: 100%;
+  font-size: 18px;
+  font-family: 'OpenSans-bold';
+  padding: 3px 0px;
   border-radius: 4px;
   background-color: #6f9e5a;
   text-decoration: none;
+  text-align: center;
   text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
 
-.live a:hover {
-  background-color: #3d5930;
+#btn a:hover {
+  background-color: #83b96b;
 }
 
 .tab-content {
   flex: 9;
   display: none;
-  padding: 10px;
+  padding: 5px;
+  padding-top: 0;
   overflow-y: scroll;
 }
+ #twitter {
+   padding-top: 5px;
+ }
 
 .tab-content::-webkit-scrollbar {
   display: none;
@@ -142,39 +156,46 @@ body::-webkit-scrollbar {
   position: relative;
   border-radius: 4px;
   margin-bottom: 5px;
-  box-shadow: 0 1px 1px 1px rgba(51, 51, 51, 0.25);
+  background-color: #f0f0f0;
 }
 
 .vod-link {
-  top: 0;
-  bottom: 0;
+  height: 100%;
   width: 100%;
-  border-radius: 4px;
-  position: absolute;
-  opacity: 0;
-  z-index: 1;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid #dadada;
+  border-left: 0;
+  border-radius: 0 4px 4px 0;
+  font-family: 'OpenSans';
+  font-size: 15px;
+  color: #4a4b4a;
+  text-align: center;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  text-decoration: none;
 }
 
 .vod-link:hover {
-  opacity: 0.2;
-  background-color: black;
+  background-color: #83b96b;
+  border: 1px solid #37502b;
+  border-left: 0;
 }
 
 .twitch-card .thumbnail {
   width: 142px;
   background-size: cover;
   border-radius: 4px 0 0 4px;
+  z-index: 2;
 }
 
 .twitch-card .infos {
-  width: calc(380px - 142px);
-  padding: 5px;
+  width: calc(100% - 142px);
   display: flex;
   align-items: center;
-  font-family: 'Futura';
-  font-size: 15px;
-  color: #6f9e5a;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 0 4px 4px 0;
 }
 
 .website-card {
@@ -184,7 +205,16 @@ body::-webkit-scrollbar {
   position: relative;
   border-radius: 4px;
   margin-bottom: 5px;
-  box-shadow: 0 1px 1px 1px rgba(51, 51, 51, 0.25);
+}
+
+.hover{
+  background-color: #83b96b;
+  border: 1px solid #37502b;
+}
+
+.no-hover {
+  background-color: #f0f0f0;
+  border: 1px solid #dadada;
 }
 
 .post-infos {
@@ -194,17 +224,18 @@ body::-webkit-scrollbar {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: 'Futura';
 }
 
 .post-title {
-  font-size: 15px;
+  font-size: 12px;
   color: #6f9e5a;
+  font-family: 'OpenSans-bold';
 }
 
 .post-description {
-  font-size: 12px;
+  font-size: 10px;
   text-align: justify;
+  font-family: 'OpenSans';
 }
 
 .post-description p {
@@ -217,11 +248,5 @@ body::-webkit-scrollbar {
   width: 100%;
   border-radius: 4px;
   position: absolute;
-  opacity: 0;
   z-index: 1;
-}
-
-.post-link:hover {
-  opacity: 0.2;
-  background-color: black;
 }

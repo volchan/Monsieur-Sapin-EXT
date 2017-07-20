@@ -9,7 +9,7 @@ function getTwitchVods() {
         var data = JSON.parse(xhr_object.responseText);
         var vods = data.videos
         for (var i = 0; i < vods.length; i++) {
-          $('#twitch').append('<div class="twitch-card"><div class="thumbnail" style="background-image: url(' + vods[i].preview.replace(/320x240/, "320x180") + ')"></div><div class="infos">' + vods[i].title + '</div><a href="' + vods[i].url + '" class="vod-link"></a></div>');
+          $('#twitch').append('<div class="twitch-card"><div class="thumbnail" style="background-image: url(' + vods[i].preview.replace(/320x240/, "320x180") + ')"></div><div class="infos"><a href="' + vods[i].url + '" class="vod-link">' + vods[i].title + '</a></div></div>');
         };
       }
     };
