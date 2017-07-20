@@ -1,7 +1,7 @@
 function getTwitchVods() {
   if ($('.twitch-card').length == 0) {
     var channel = "monsieursapin";
-    var clientId = "You won't get it here ;)";
+    var clientId = "You won't get it here :D";
     var url = "https://api.twitch.tv/kraken/channels/" + channel + "/videos?broadcasts=true&limit=20&client_id=" + clientId;
     var xhr_object = new XMLHttpRequest();
     xhr_object.onreadystatechange = function() {
