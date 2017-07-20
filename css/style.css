@@ -200,7 +200,7 @@ body::-webkit-scrollbar {
 
 .website-card {
   width: 100%;
-  height: 80px;
+  height: 130px;
   display: flex;
   position: relative;
   border-radius: 4px;
@@ -211,6 +211,7 @@ body::-webkit-scrollbar {
   background-color: #83b96b;
   border: 1px solid #37502b;
 }
+
 
 .no-hover {
   background-color: #f0f0f0;
@@ -227,15 +228,28 @@ body::-webkit-scrollbar {
 }
 
 .post-title {
-  font-size: 12px;
-  color: #6f9e5a;
+  flex: 1;
+  font-size: 14px;
   font-family: 'OpenSans-bold';
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.green-title {
+  color: #6f9e5a;
+}
+
+.white-title {
+  color: #fff;
 }
 
 .post-description {
-  font-size: 10px;
+  flex: 3;
+  font-size: 12px;
   text-align: justify;
   font-family: 'OpenSans';
+  line-height: 20px;
 }
 
 .post-description p {

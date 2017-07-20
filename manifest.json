@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Monsieur Sapin extension",
   "description": "Suivez l'actualité de Monsieur Sapin",
-  "version": "1.9",
+  "version": "2.0",
   "permissions": ["http://*/*", "https://*/*", "notifications", "tabs"],
   "browser_action": {
     "default_icon": "/img/icon.png",

@@ -37,13 +37,17 @@ function hoveringWebsiteLinks() {
     function() {
       $(this).parent().addClass('hover');
       $(this).parent().removeClass('no-hover');
+      $(this).parent().children().children().first().addClass('white-title');
+      $(this).parent().children().children().first().removeClass('green-title');
     },
     function() {
       $(this).parent().addClass('no-hover');
       $(this).parent().removeClass('hover');
+      $(this).parent().children().children().first().addClass('green-title');
+      $(this).parent().children().children().first().removeClass('white-title');
     }
   );
-};
+}
 
 $(".tab-link").on("click", function(e){
   var tab_id = $(this).attr('data-tab');
