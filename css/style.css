@@ -17,6 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   background-color: #fafafa;
+  color:
 }
 
 body::-webkit-scrollbar {
@@ -79,7 +80,6 @@ body::-webkit-scrollbar {
   font-size: 20px;
   font-family: 'OpenSans-bold';
   transition: all 0.25s ease;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
 }
 
 .tab-link:hover {
@@ -108,7 +108,6 @@ body::-webkit-scrollbar {
   font-family: 'OpenSans';
   font-size: 20px;
   justify-content: center;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
   z-index: 3 ;
 }
 
@@ -122,7 +121,7 @@ body::-webkit-scrollbar {
   background-color: #6f9e5a;
   text-decoration: none;
   text-align: center;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
 }
 
 #btn a:hover {
@@ -174,7 +173,6 @@ body::-webkit-scrollbar {
   font-size: 15px;
   color: #4a4b4a;
   text-align: center;
-  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
   text-decoration: none;
 }
 
@@ -182,6 +180,7 @@ body::-webkit-scrollbar {
   background-color: #83b96b;
   border: 1px solid #37502b;
   border-left: 0;
+  color: #37502b;
 }
 
 .twitch-card .thumbnail {
@@ -220,7 +219,7 @@ body::-webkit-scrollbar {
 
 .post-infos {
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -229,7 +228,7 @@ body::-webkit-scrollbar {
 
 .post-title {
   flex: 1;
-  font-size: 14px;
+  font-size: 0.8rem;
   font-family: 'OpenSans-bold';
   margin-bottom: 5px;
   display: flex;
@@ -246,10 +245,18 @@ body::-webkit-scrollbar {
 
 .post-description {
   flex: 3;
-  font-size: 12px;
+  font-size: 0.7rem;
   text-align: justify;
   font-family: 'OpenSans';
   line-height: 20px;
+}
+
+.black-text {
+  color: #4a4b4a;
+}
+
+.green-text {
+  color: #37502b;
 }
 
 .post-description p {

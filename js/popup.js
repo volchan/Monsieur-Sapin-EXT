@@ -6,16 +6,19 @@ window.addEventListener('click', function(e){
 
 function twitchBtn() {
   removeBtn();
-  if ($('#live-dot').is(':visible')) {
-    $('.content').prepend('<div id="btn"><a href="https://www.twitch.tv/monsieursapin">MONSIEUR SAPIN EST LIVE !</a></div>');
+  streamType = $('twitch-tab').attr('data-stream-type');
+  if (streamType == 'live') {
+    $('.content').prepend('<div id="btn"><a href="https://www.twitch.tv/monsieursapin">Monsieur sapin est en live !</a></div>');
+  } else if (streamType == 'vod') {
+    $('.content').prepend('<div id="btn"><a href="https://www.twitch.tv/monsieursapin">Monsieur sapin à lancé une vod !</a></div>');
   } else {
-    $('.content').prepend('<div id="btn"><a href="https://www.twitch.tv/monsieursapin">ACCEDER A LA CHAINE</a></div>');
+    $('.content').prepend('<div id="btn"><a href="https://www.twitch.tv/monsieursapin">Accéder à la chaîne</a></div>');
   }
 };
 
 function websiteBtn() {
   removeBtn();
-  $('.content').prepend('<div id="btn"><a href="https://www.monsieursapin.fr">ACCEDER AU SITE WEB</a></div>');
+  $('.content').prepend('<div id="btn"><a href="https://www.monsieursapin.fr">Accéder au site web</a></div>');
 };
 
 function removeBtn() {
@@ -39,15 +42,19 @@ function hoveringWebsiteLinks() {
       $(this).parent().removeClass('no-hover');
       $(this).parent().children().children().first().addClass('white-title');
       $(this).parent().children().children().first().removeClass('green-title');
+      $(this).parent().children().children().last().addClass('green-text');
+      $(this).parent().children().children().last().removeClass('black-text');
     },
     function() {
       $(this).parent().addClass('no-hover');
       $(this).parent().removeClass('hover');
       $(this).parent().children().children().first().addClass('green-title');
       $(this).parent().children().children().first().removeClass('white-title');
+      $(this).parent().children().children().last().addClass('black-text');
+      $(this).parent().children().children().last().removeClass('green-text');
     }
   );
-}
+};
 
 $(".tab-link").on("click", function(e){
   var tab_id = $(this).attr('data-tab');
