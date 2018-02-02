@@ -1,74 +1,85 @@
+let userNotified = false;
 
-var userNotified = false;
+const channel = "monsieursapin";
+const titleLiveData = "Monsieur Sapin est en live !";
+const titleVodData = "Monsieur Sapin à lancé une VOD !";
+const channelLight = "Monsieur Sapin";
+const clientId = "You won't find it here :D";
+const streamUrl = `https://api.twitch.tv/kraken/streams/${channel}?client_id=${clientId}`;
 
-var channel = "monsieursapin";
-var titleLiveData = "Monsieur Sapin est en live !";
-var titleVodData = "Monsieur Sapin à lancé une VOD !";
-var channelLight = "Monsieur Sapin";
-var clientId = "You won't find it here :D";
-
-function callback() {
-  var xhr_object = new XMLHttpRequest();
-  xhr_object.onreadystatechange = function() {
-    if (xhr_object.readyState==4 && xhr_object.status==200){
-      var data = JSON.parse(xhr_object.responseText);
-      if(data.stream != null ){
-        if (userNotified == false && data.stream.streamType == 'live') {
-          notify(data.stream.channel.status, 'live');
-          chrome.browserAction.setPopup({popup: "/popup/popuplive.html"});
-          toogleStream('live');
-        } else if (userNotified == false && data.stream.streamType == 'watchParty') {
-          notify(data.stream.channel.status, 'vod');
-          chrome.browserAction.setPopup({popup: "/popup/popupvod.html"});
-          toogleStream('vod');
-        }
-      }else if (userNotified){
-        chrome.browserAction.setPopup({popup: "/popup/popup.html"});
-        toogleStream('offline');
-      }
-    }
-  };
-
-  var url = "https://api.twitch.tv/kraken/streams/" + channel + "?client_id=" + clientId;
-  xhr_object.open("GET", url, true);
-  xhr_object.send();
+const fetchStreamInfos = async () => {
+  const response = await fetch(streamUrl);
+  const json = await response.json();
+  const stream = json.stream;
+  checkStreamStatus(stream);
 };
 
-function notify(streamTitle, streamType) {
-  if (streamType == 'live') {
-    title = titleLiveData
-  } else {
-    title = titleVodData
+const checkStreamStatus = stream => {
+  const status = stream.stream_type;
+  switch (status) {
+    case "live":
+      notifyLive(stream);
+      break;
+    case "watchParty":
+      notifyVod(stream);
+      break;
+    default:
+      resetNotification(stream);
   }
-  var notification = new Notification(title, {
-    icon: '/img/icon_128.png',
+};
+
+const notifyLive = stream => {
+  chrome.browserAction.setTitle({ title: titleLiveData });
+  chrome.browserAction.setIcon({ path: "../src/img/live_128.png" });
+  if (!userNotified) {
+    notify(stream.stream_type, stream);
+  }
+};
+
+const notifyVod = stream => {
+  chrome.browserAction.setTitle({ title: titleVodData });
+  chrome.browserAction.setIcon({ path: "../src/img/vod_128.png" });
+  if (!userNotified) {
+    notify(stream.stream_type, stream);
+  }
+};
+
+const resetNotification = stream => {
+  userNotified = false;
+  chrome.browserAction.setTitle({ title: channelLight + " est hors ligne" });
+  chrome.browserAction.setIcon({ path: "../src/img/icon.png" });
+};
+
+const notify = (streamType, stream) => {
+  const streamTitle = stream.channel.status;
+  let notifTitle = "";
+
+  switch (streamType) {
+    case "live":
+      notifTitle = titleLiveData;
+      break;
+    case "vod":
+      notifTitle = titleVodData;
+      break;
+    default:
+      notifTitle;
+  }
+
+  const notification = new Notification(streamTitle, {
+    icon: "/src/img/icon_128.png",
     body: streamTitle
   });
 
-  notification.onclick = function () {
+  userNotified = true;
+
+  notification.onclick = () => {
     window.open("https://twitch.tv/" + channel);
     notification.close();
   };
 
-  setTimeout(function() { notification.close() }, 10000);
+  setTimeout(() => {
+    notification.close();
+  }, 5000);
 };
 
-function toogleStream(value) {
-  if (value == 'live') {
-    userNotified = true;
-    chrome.browserAction.setTitle({title : channelLight + " est en live !"});
-    chrome.browserAction.setIcon({path:"/img/live.png"});
-  } else if (value == 'vod') {
-    userNotified = true;
-    chrome.browserAction.setTitle({title : channelLight + " à lancé une VOD !"});
-    chrome.browserAction.setIcon({path:"/img/vod.png"});
-  } else {
-    userNotified = false;
-    chrome.browserAction.setTitle({title : channelLight + " est hors ligne"});
-    chrome.browserAction.setIcon({path:"/img/icon.png"});
-  }
-};
-
-setInterval(callback, 30000);
-toogleStream(false);
-callback();
+setInterval(fetchStreamInfos, 5000);

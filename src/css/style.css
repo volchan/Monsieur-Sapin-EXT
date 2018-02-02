@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'OpenSans';
-    src: url('/fonts/OpenSans-Regular.ttf');
+    src: url('/src/fonts/OpenSans-Regular.ttf');
 }
 
 @font-face {
     font-family: 'OpenSans-bold';
-    src: url('/fonts/OpenSansCondensed-Bold.ttf');
+    src: url('/src/fonts/OpenSansCondensed-Bold.ttf');
 }
 
 @keyframes blink {50% { background-color: transparent }}
@@ -36,7 +36,7 @@ body::-webkit-scrollbar {
 .banner {
   flex: 2;
   width: 100%;
-  background-image: url("/img/banner.png");
+  background-image: url("/src/img/banner.png");
 }
 
 .nav {
