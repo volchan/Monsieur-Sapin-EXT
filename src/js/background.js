@@ -18,10 +18,14 @@ const checkStreamStatus = stream => {
   const status = stream.stream_type;
   switch (status) {
     case "live":
-      notifyLive(stream);
+      if (!userNotified) {
+        notifyLive(stream);
+      }
       break;
     case "watchParty":
-      notifyVod(stream);
+      if (!userNotified) {
+        notifyVod(stream);
+      }
       break;
     default:
       resetNotification(stream);
@@ -31,17 +35,13 @@ const checkStreamStatus = stream => {
 const notifyLive = stream => {
   chrome.browserAction.setTitle({ title: titleLiveData });
   chrome.browserAction.setIcon({ path: "../src/img/live_128.png" });
-  if (!userNotified) {
-    notify(stream.stream_type, stream);
-  }
+  notify(stream.stream_type, stream);
 };
 
 const notifyVod = stream => {
   chrome.browserAction.setTitle({ title: titleVodData });
   chrome.browserAction.setIcon({ path: "../src/img/vod_128.png" });
-  if (!userNotified) {
-    notify(stream.stream_type, stream);
-  }
+  notify(stream.stream_type, stream);
 };
 
 const resetNotification = stream => {
