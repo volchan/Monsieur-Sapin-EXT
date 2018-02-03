@@ -4,9 +4,9 @@ const channel = "monsieursapin";
 const titleLiveData = "Monsieur Sapin est en live !";
 const titleVodData = "Monsieur Sapin à lancé une VOD !";
 const channelLight = "Monsieur Sapin";
-const offlinePopup = "/src/popup/popup.html";
-const livePopup = "/src/popup/popup_live.html";
-const vodPopup = "/src/popup/popup_vod.html";
+const offlinePopup = "../src/popup.html";
+const livePopup = "../src/popup_live.html";
+const vodPopup = "../src/popup_vod.html";
 const clientId = "You won't find it here :D";
 const streamUrl = `https://api.twitch.tv/kraken/streams/${channel}?client_id=${clientId}`;
 
@@ -14,7 +14,11 @@ const fetchStreamInfos = async () => {
   const response = await fetch(streamUrl);
   const json = await response.json();
   const stream = json.stream;
-  checkStreamStatus(stream);
+  if (stream) {
+    checkStreamStatus(stream);
+  } else {
+    resetNotification();
+  }
 };
 
 const checkStreamStatus = stream => {
@@ -31,7 +35,7 @@ const checkStreamStatus = stream => {
       }
       break;
     default:
-      resetNotification(stream);
+      resetNotification();
   }
 };
 
@@ -49,7 +53,7 @@ const notifyVod = stream => {
   notify(stream.stream_type, stream);
 };
 
-const resetNotification = stream => {
+const resetNotification = () => {
   userNotified = false;
   chrome.browserAction.setTitle({ title: channelLight + " est hors ligne" });
   chrome.browserAction.setIcon({ path: "../src/img/icon.png" });
