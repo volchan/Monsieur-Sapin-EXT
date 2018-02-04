@@ -3,7 +3,7 @@
   "name": "Monsieur Sapin extension",
   "description": "Suivez l'actualité de Monsieur Sapin",
   "version": "2.2.0",
-  "permissions": ["http://*/*", "https://*/*", "notifications", "tabs"],
+  "permissions": ["http://*/*", "https://*/*", "cookies", "notifications", "tabs"],
   "browser_action": {
     "default_icon": "/src/img/icon.png",
     "default_popup": "/src/popup.html"
