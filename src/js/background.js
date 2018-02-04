@@ -1,6 +1,6 @@
 let userNotified = false;
 
-const extVersion = "2.2.2";
+const extVersion = "2.2.4";
 const channel = "monsieursapin";
 const titleLiveData = "Monsieur Sapin est en live !";
 const titleVodData = "Monsieur Sapin à lancé une VOD !";
