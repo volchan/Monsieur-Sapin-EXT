@@ -1,5 +1,5 @@
 const channel = "monsieursapin";
-const clientId = "You won't find it here :D";
+const clientId = "g7dc2o9buaa6xrmiu846ghjz8c92jm";
 const twitchCards = document.querySelectorAll(".twitch-card");
 const twitchContainer = document.getElementById("twitch");
 const url = `https://api.twitch.tv/kraken/clips/top?channel=${channel}&limit=20`;

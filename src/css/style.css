@@ -182,6 +182,7 @@ body::-webkit-scrollbar {
   font-family: 'OpenSans-bold';
   font-size: 1rem;
   padding: 5px 10px;
+  text-shadow: 1px 0 1px rgba(0, 0, 0, 0.25);
 }
 
 .twitch-card-infos-title {
@@ -217,6 +218,7 @@ body::-webkit-scrollbar {
   background-size: cover;
   border-radius: 50%;
   margin-right: 5px;
+  box-shadow: 1px 0 1px rgba(0, 0, 0, 0.25);
 }
 
 .vod-link {
