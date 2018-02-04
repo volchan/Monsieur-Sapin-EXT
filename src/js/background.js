@@ -1,6 +1,6 @@
 let userNotified = false;
 
-const extVersion = "2.2.0";
+const extVersion = "2.2.2";
 const channel = "monsieursapin";
 const titleLiveData = "Monsieur Sapin est en live !";
 const titleVodData = "Monsieur Sapin à lancé une VOD !";
@@ -98,13 +98,12 @@ const checkUpdate = () => {
 };
 
 const checkCookie = () => {
-  chrome.cookies.get(
+  chrome.storage.local.get(
     {
-      name: "MonsieurSapinExt",
-      url: "http://www.monsieursapin.fr"
+      version: ""
     },
-    cookie => {
-      if (cookie == null || cookie.value != extVersion) {
+    items => {
+      if (items.version != extVersion) {
         newCookie();
       }
     }
@@ -112,14 +111,12 @@ const checkCookie = () => {
 };
 
 const newCookie = () => {
-  chrome.cookies.set(
+  chrome.storage.local.set(
     {
-      name: "MonsieurSapinExt",
-      url: "http://www.monsieursapin.fr",
-      value: extVersion
+      "version": extVersion
     },
-    cookie => {
-      const notification = new Notification(`Mise à jour ${cookie.value}`, {
+    () => {
+      const notification = new Notification(`Mise à jour ${extVersion}`, {
         icon: "../src/img/icon_128.png",
         body: "L'extention à bien était mise à jour."
       });
