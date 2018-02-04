@@ -8,7 +8,7 @@ const channelLight = "Monsieur Sapin";
 const offlinePopup = "../src/popup.html";
 const livePopup = "../src/popup_live.html";
 const vodPopup = "../src/popup_vod.html";
-const clientId = "You won't get ir here :D !";
+const clientId = "You won't get it here !";
 const streamUrl = `https://api.twitch.tv/kraken/streams/${channel}?client_id=${clientId}`;
 
 const fetchStreamInfos = async () => {
@@ -77,7 +77,7 @@ const notify = (streamType, stream) => {
   }
 
   const notification = new Notification(notifTitle, {
-    icon: "/src/img/icon_128.png",
+    icon: "../src/img/icon_128.png",
     body: streamTitle
   });
 
@@ -120,7 +120,7 @@ const newCookie = () => {
     },
     cookie => {
       const notification = new Notification(`Mise à jour ${cookie.value}`, {
-        icon: "/src/img/icon_128.png",
+        icon: "../src/img/icon_128.png",
         body: "L'extention à bien était mise à jour."
       });
 

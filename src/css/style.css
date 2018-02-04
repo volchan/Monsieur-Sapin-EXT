@@ -150,7 +150,7 @@ body::-webkit-scrollbar {
   flex-direction: column;
 }
 
-.twitch-card {
+.card {
   width: 100%;
   min-height: 120px;
   display: flex;
@@ -163,7 +163,11 @@ body::-webkit-scrollbar {
   position: relative;
 }
 
-.twitch-card a {
+.card.youtube {
+  background-position: 50% 79%;
+}
+
+.card a {
   position: absolute;
   top: 0;
   left: 0;
@@ -171,11 +175,11 @@ body::-webkit-scrollbar {
   width: 100%;
 }
 
-.twitch-card a:hover {
+.card a:hover {
   background: rgba(255, 255, 255, 0.24);
 }
 
-.twitch-card-infos {
+.card-infos {
   background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.8));
   width: 100%;
   display: flex;
@@ -187,27 +191,31 @@ body::-webkit-scrollbar {
   text-shadow: 1px 0 1px rgba(0, 0, 0, 0.25);
 }
 
-.twitch-card-infos-title {
+.card-infos.youtube {
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-infos-title {
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  text-shadow:
 }
 
-.twitch-card-infos-title p {
+.card-infos p {
   margin: 0;
 }
 
-.twitch-card-infos-title .date {
+.date {
   font-size: 0.6rem;
 }
 
-.twitch-card-infos-title .game {
+.game {
   font-size: 0.65rem;
 }
 
-.twitch-card-infos-author {
+.card-infos-author {
   flex: 1;
   display: flex;
   justify-content: flex-end;
