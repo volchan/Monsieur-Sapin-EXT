@@ -8,8 +8,6 @@
     src: url('/src/fonts/OpenSansCondensed-Bold.ttf');
 }
 
-@keyframes blink {50% { background-color: transparent }}
-
 body {
   margin: 0;
   width: 400px;
@@ -100,9 +98,9 @@ body::-webkit-scrollbar {
   justify-content: center;
 }
 
-#btn {
+.btn {
+  display: none;
   color: #6f9e5a;
-  display: flex;
   align-items: center;
   padding: 5px;
   font-family: 'OpenSans';
@@ -111,7 +109,11 @@ body::-webkit-scrollbar {
   z-index: 3 ;
 }
 
-#btn a {
+.btn.active {
+  display: flex;
+}
+
+.btn a {
   color: #fff;
   width: 100%;
   font-size: 18px;
@@ -124,7 +126,7 @@ body::-webkit-scrollbar {
   text-transform: uppercase;
 }
 
-#btn a:hover {
+.btn a:hover {
   background-color: #83b96b;
 }
 
@@ -219,118 +221,4 @@ body::-webkit-scrollbar {
   border-radius: 50%;
   margin-right: 5px;
   box-shadow: 1px 0 1px rgba(0, 0, 0, 0.25);
-}
-
-.vod-link {
-  height: 100%;
-  width: 100%;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-sizing: border-box;
-  border: 1px solid #dadada;
-  border-left: 0;
-  border-radius: 0 4px 4px 0;
-  font-family: 'OpenSans';
-  font-size: 15px;
-  color: #4a4b4a;
-  text-align: center;
-  text-decoration: none;
-}
-
-.vod-link:hover {
-  background-color: #83b96b;
-  border: 1px solid #37502b;
-  border-left: 0;
-  color: #37502b;
-}
-
-.twitch-card .thumbnail {
-  width: 142px;
-  background-size: cover;
-  border-radius: 4px 0 0 4px;
-  z-index: 2;
-}
-
-.twitch-card .infos {
-  width: calc(100% - 142px);
-  display: flex;
-  align-items: center;
-  border-radius: 0 4px 4px 0;
-}
-
-.website-card {
-  width: 100%;
-  height: 130px;
-  display: flex;
-  position: relative;
-  border-radius: 4px;
-  margin-bottom: 5px;
-}
-
-.hover{
-  background-color: #83b96b;
-  border: 1px solid #37502b;
-}
-
-
-.no-hover {
-  background-color: #f0f0f0;
-  border: 1px solid #dadada;
-}
-
-.post-infos {
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.post-title {
-  flex: 1;
-  font-size: 0.8rem;
-  font-family: 'OpenSans-bold';
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-}
-
-.green-title {
-  color: #6f9e5a;
-}
-
-.white-title {
-  color: #fff;
-}
-
-.post-description {
-  flex: 3;
-  font-size: 0.7rem;
-  text-align: justify;
-  font-family: 'OpenSans';
-  line-height: 20px;
-}
-
-.black-text {
-  color: #4a4b4a;
-}
-
-.green-text {
-  color: #37502b;
-}
-
-.post-description p {
-  margin: 0;
-}
-
-.post-link {
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  border-radius: 4px;
-  position: absolute;
-  z-index: 1;
 }
