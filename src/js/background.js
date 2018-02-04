@@ -8,7 +8,7 @@ const channelLight = "Monsieur Sapin";
 const offlinePopup = "../src/popup.html";
 const livePopup = "../src/popup_live.html";
 const vodPopup = "../src/popup_vod.html";
-const clientId = "g7dc2o9buaa6xrmiu846ghjz8c92jm";
+const clientId = "You won't get ir here :D !";
 const streamUrl = `https://api.twitch.tv/kraken/streams/${channel}?client_id=${clientId}`;
 
 const fetchStreamInfos = async () => {
