@@ -1,6 +1,6 @@
 let userNotified = false;
 
-const extVersion = "2.2.4";
+const extVersion = "2.2.5";
 const channel = "monsieursapin";
 const titleLiveData = "Monsieur Sapin est en live !";
 const titleVodData = "Monsieur Sapin à lancé une VOD !";
@@ -42,14 +42,18 @@ const checkStreamStatus = stream => {
 
 const notifyLive = stream => {
   chrome.browserAction.setTitle({ title: titleLiveData });
-  chrome.browserAction.setIcon({ path: "../src/img/live_128.png" });
+  chrome.browserAction.setIcon({ path: "../src/img/icon_128.png" });
+  chrome.browserAction.setBadgeBackgroundColor({ color: "#6f9e5a" })
+  chrome.browserAction.setBadgeText({ text: "LIVE" })
   chrome.browserAction.setPopup({ popup: livePopup });
   notify(stream.stream_type, stream);
 };
 
 const notifyVod = stream => {
   chrome.browserAction.setTitle({ title: titleVodData });
-  chrome.browserAction.setIcon({ path: "../src/img/vod_128.png" });
+  chrome.browserAction.setIcon({ path: "../src/img/icon_128.png" });
+  chrome.browserAction.setBadgeBackgroundColor({ color: "#6f9e5a" })
+  chrome.browserAction.setBadgeText({ text: "VOD" })
   chrome.browserAction.setPopup({ popup: vodPopup });
   notify(stream.stream_type, stream);
 };
