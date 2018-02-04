@@ -1,6 +1,6 @@
 let userNotified = false;
 
-const extVersion = "2.2.5";
+const extVersion = "2.2.6";
 const channel = "monsieursapin";
 const titleLiveData = "Monsieur Sapin est en live !";
 const titleVodData = "Monsieur Sapin à lancé une VOD !";
@@ -62,6 +62,7 @@ const resetNotification = () => {
   userNotified = false;
   chrome.browserAction.setTitle({ title: channelLight + " est hors ligne" });
   chrome.browserAction.setIcon({ path: "../src/img/icon.png" });
+  chrome.browserAction.setBadgeText({ text: "" })
   chrome.browserAction.setPopup({ popup: offlinePopup });
 };
 
