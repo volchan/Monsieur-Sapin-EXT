@@ -1,6 +1,9 @@
+require("babel-core/register");
+require("babel-polyfill");
+
 const channel = "monsieursapin";
-const twitchClientId = "You won't get it here !";
-const youtubeClientId = "You won't get it here !";
+const twitchClientId = "You won't find it here :D !";
+const youtubeClientId = "You won't find it here :D !";
 
 const tabHandler = () => {
   const tabLinks = document.querySelectorAll(".tab-link");
@@ -120,24 +123,6 @@ const renderVideo = video => {
     </div>
   `;
 };
-
-window.twttr = ((d, s, id) => {
-  let js,
-    fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
-
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
-
-  return t;
-})(document, "script", "twitter-wjs");
 
 document.addEventListener("DOMContentLoaded", () => {
   tabHandler();

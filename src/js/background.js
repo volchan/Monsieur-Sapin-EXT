@@ -1,6 +1,9 @@
+require("babel-core/register");
+require("babel-polyfill");
+
 let userNotified = false;
 
-const extVersion = "2.2.6";
+const extVersion = "2.2.7";
 const channel = "monsieursapin";
 const titleLiveData = "Monsieur Sapin est en live !";
 const titleVodData = "Monsieur Sapin à lancé une VOD !";
@@ -8,7 +11,7 @@ const channelLight = "Monsieur Sapin";
 const offlinePopup = "../src/popup.html";
 const livePopup = "../src/popup_live.html";
 const vodPopup = "../src/popup_vod.html";
-const clientId = "You won't get it here !";
+const clientId = "You won't find it here :D !";
 const streamUrl = `https://api.twitch.tv/kraken/streams/${channel}?client_id=${clientId}`;
 
 const fetchStreamInfos = async () => {
