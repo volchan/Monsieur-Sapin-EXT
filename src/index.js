@@ -2,8 +2,8 @@ require("babel-core/register");
 require("babel-polyfill");
 
 const channel = "monsieursapin";
-const twitchClientId = "You won't find it here :D !";
-const youtubeClientId = "You won't find it here :D !";
+const twitchClientId = "not here";
+const youtubeClientId = "not here";
 
 const tabHandler = () => {
   const tabLinks = document.querySelectorAll(".tab-link");

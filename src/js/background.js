@@ -1,9 +1,9 @@
 require("babel-core/register");
 require("babel-polyfill");
 
-let userNotified = false;
+let notified = false;
 
-const extVersion = "2.2.7";
+const extVersion = "2.2.8";
 const channel = "monsieursapin";
 const titleLiveData = "Monsieur Sapin est en live !";
 const titleVodData = "Monsieur Sapin à lancé une VOD !";
@@ -11,7 +11,7 @@ const channelLight = "Monsieur Sapin";
 const offlinePopup = "../src/popup.html";
 const livePopup = "../src/popup_live.html";
 const vodPopup = "../src/popup_vod.html";
-const clientId = "You won't find it here :D !";
+const clientId = "not here";
 const streamUrl = `https://api.twitch.tv/kraken/streams/${channel}?client_id=${clientId}`;
 
 const fetchStreamInfos = async () => {
@@ -26,28 +26,43 @@ const fetchStreamInfos = async () => {
 };
 
 const checkStreamStatus = stream => {
+  console.log("checkStreamStatus");
   const status = stream.stream_type;
-  switch (status) {
-    case "live":
-      if (!userNotified) {
-        notifyLive(stream);
+
+  chrome.storage.local.get(
+    {
+      notified: ""
+    },
+    items => {
+      notified = items.notified;
+      console.log("items", items);
+      console.log("notified :", notified);
+      console.log("status : ", status);
+
+      switch (status) {
+        case "live":
+          if (notified == false) {
+            notifyLive(stream);
+          }
+          break;
+        case "watchParty":
+          if (notified == false) {
+            notifyVod(stream);
+          }
+          break;
+        case null:
+          resetNotification();
+          break;
       }
-      break;
-    case "watchParty":
-      if (!userNotified) {
-        notifyVod(stream);
-      }
-      break;
-    default:
-      resetNotification();
-  }
+    }
+  );
 };
 
 const notifyLive = stream => {
   chrome.browserAction.setTitle({ title: titleLiveData });
   chrome.browserAction.setIcon({ path: "../src/img/icon_128.png" });
-  chrome.browserAction.setBadgeBackgroundColor({ color: "#6f9e5a" })
-  chrome.browserAction.setBadgeText({ text: "LIVE" })
+  chrome.browserAction.setBadgeBackgroundColor({ color: "#6f9e5a" });
+  chrome.browserAction.setBadgeText({ text: "LIVE" });
   chrome.browserAction.setPopup({ popup: livePopup });
   notify(stream.stream_type, stream);
 };
@@ -55,50 +70,64 @@ const notifyLive = stream => {
 const notifyVod = stream => {
   chrome.browserAction.setTitle({ title: titleVodData });
   chrome.browserAction.setIcon({ path: "../src/img/icon_128.png" });
-  chrome.browserAction.setBadgeBackgroundColor({ color: "#6f9e5a" })
-  chrome.browserAction.setBadgeText({ text: "VOD" })
+  chrome.browserAction.setBadgeBackgroundColor({ color: "#6f9e5a" });
+  chrome.browserAction.setBadgeText({ text: "VOD" });
   chrome.browserAction.setPopup({ popup: vodPopup });
   notify(stream.stream_type, stream);
 };
 
 const resetNotification = () => {
-  userNotified = false;
-  chrome.browserAction.setTitle({ title: channelLight + " est hors ligne" });
-  chrome.browserAction.setIcon({ path: "../src/img/icon.png" });
-  chrome.browserAction.setBadgeText({ text: "" })
-  chrome.browserAction.setPopup({ popup: offlinePopup });
+  console.log("toto");
+  chrome.storage.local.set(
+    {
+      notified: false
+    },
+    () => {
+      chrome.browserAction.setTitle({
+        title: channelLight + " est hors ligne"
+      });
+      chrome.browserAction.setIcon({ path: "../src/img/icon.png" });
+      chrome.browserAction.setBadgeText({ text: "" });
+      chrome.browserAction.setPopup({ popup: offlinePopup });
+    }
+  );
 };
 
 const notify = (streamType, stream) => {
-  const streamTitle = stream.channel.status;
-  let notifTitle = "";
+  chrome.storage.local.set(
+    {
+      notified: true
+    },
+    () => {
+      const streamTitle = stream.channel.status;
+      let notifTitle = "";
 
-  switch (streamType) {
-    case "live":
-      notifTitle = titleLiveData;
-      break;
-    case "vod":
-      notifTitle = titleVodData;
-      break;
-    default:
-      notifTitle;
-  }
+      switch (streamType) {
+        case "live":
+          notifTitle = titleLiveData;
+          break;
+        case "vod":
+          notifTitle = titleVodData;
+          break;
+        default:
+          notifTitle;
+      }
 
-  const notification = new Notification(notifTitle, {
-    icon: "../src/img/icon_128.png",
-    body: streamTitle
-  });
+      const notification = new Notification(notifTitle, {
+        icon: "../src/img/icon_128.png",
+        body: streamTitle
+      });
 
-  userNotified = true;
+      notification.onclick = () => {
+        window.open("https://twitch.tv/" + channel);
+        notification.close();
+      };
 
-  notification.onclick = () => {
-    window.open("https://twitch.tv/" + channel);
-    notification.close();
-  };
-
-  setTimeout(() => {
-    notification.close();
-  }, 5000);
+      setTimeout(() => {
+        notification.close();
+      }, 5000);
+    }
+  );
 };
 
 const checkUpdate = () => {
@@ -121,12 +150,12 @@ const checkCookie = () => {
 const newCookie = () => {
   chrome.storage.local.set(
     {
-      "version": extVersion
+      version: extVersion
     },
     () => {
       const notification = new Notification(`Mise à jour ${extVersion}`, {
         icon: "../src/img/icon_128.png",
-        body: "L'extention à bien était mise à jour."
+        body: "L'extension à bien été mise à jour."
       });
 
       notification.onclick = () => {
