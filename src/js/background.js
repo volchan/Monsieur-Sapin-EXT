@@ -3,7 +3,7 @@ require("babel-polyfill");
 
 let notified = false;
 
-const extVersion = "2.2.8";
+const extVersion = "2.2.9";
 const channel = "monsieursapin";
 const titleLiveData = "Monsieur Sapin est en live !";
 const titleVodData = "Monsieur Sapin à lancé une VOD !";
@@ -11,13 +11,14 @@ const channelLight = "Monsieur Sapin";
 const offlinePopup = "../src/popup.html";
 const livePopup = "../src/popup_live.html";
 const vodPopup = "../src/popup_vod.html";
-const clientId = "not here";
+const clientId = "not here :D";
 const streamUrl = `https://api.twitch.tv/kraken/streams/${channel}?client_id=${clientId}`;
 
 const fetchStreamInfos = async () => {
   const response = await fetch(streamUrl);
   const json = await response.json();
   const stream = json.stream;
+  console.log("twitch response:",stream);
   if (stream) {
     checkStreamStatus(stream);
   } else {
@@ -77,7 +78,7 @@ const notifyVod = stream => {
 };
 
 const resetNotification = () => {
-  console.log("toto");
+  console.log("resetNotification!!!!");
   chrome.storage.local.set(
     {
       notified: false
@@ -117,6 +118,7 @@ const notify = (streamType, stream) => {
         icon: "../src/img/icon_128.png",
         body: streamTitle
       });
+      console.log("notification :", notification);
 
       notification.onclick = () => {
         window.open("https://twitch.tv/" + channel);
@@ -170,4 +172,4 @@ const newCookie = () => {
 };
 
 checkUpdate();
-setInterval(fetchStreamInfos, 5000);
+setInterval(fetchStreamInfos, 15000);

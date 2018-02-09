@@ -8,6 +8,15 @@
     src: url('/src/fonts/OpenSansCondensed-Bold.ttf');
 }
 
+#fretille {
+  position: absolute;
+  top: 20px;
+  right: 97px;
+  height: 37px;
+  width: 37px;
+  border-radius: 50%;
+}
+
 body {
   margin: 0;
   width: 400px;

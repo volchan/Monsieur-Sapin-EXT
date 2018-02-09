@@ -2,8 +2,8 @@ require("babel-core/register");
 require("babel-polyfill");
 
 const channel = "monsieursapin";
-const twitchClientId = "not here";
-const youtubeClientId = "not here";
+const twitchClientId = "not here :D";
+const youtubeClientId = "not here :D";
 
 const tabHandler = () => {
   const tabLinks = document.querySelectorAll(".tab-link");
@@ -13,7 +13,9 @@ const tabHandler = () => {
       const activeTab = document.getElementsByClassName("tab-link active")[0];
 
       const tabContent = document.getElementById(tabId);
-      const activeTabContent = document.getElementsByClassName("tab-content active")[0];
+      const activeTabContent = document.getElementsByClassName(
+        "tab-content active"
+      )[0];
 
       const btn = document.getElementById(`${tabId}-btn`);
       const activeBtn = document.getElementsByClassName("btn active")[0];
@@ -72,12 +74,16 @@ const renderClip = clip => {
       <div class="card-infos-game-title">
         <div class="card-infos-title">
           <p class="title">${renderTitle(clip.title, 25)}</p>
-          <p class="date">${new Date(clip.created_at).toLocaleDateString("fr-FR")}</p>
+          <p class="date">${new Date(clip.created_at).toLocaleDateString(
+            "fr-FR"
+          )}</p>
           <p class="game">${clip.game}</p>
         </div>
       </div>
       <div class="card-infos-author">
-        <div class="author-avatar" style="background-image: url(${clip.curator.logo})"></div>
+        <div class="author-avatar" style="background-image: url(${
+          clip.curator.logo
+        })"></div>
         <div class="author-name">${clip.curator.display_name}</div>
       </div>
     </div>
@@ -114,14 +120,24 @@ const displayVideos = videos => {
 
 const renderVideo = video => {
   return `
-    <div class="card youtube" style="background-image: url('${video.snippet.thumbnails.high.url}')">
+    <div class="card youtube" style="background-image: url('${
+      video.snippet.thumbnails.high.url
+    }')">
       <div class="card-infos youtube">
-        <p class="date">${new Date(video.snippet.publishedAt).toLocaleDateString("fr-FR")}</p>
+        <p class="date">${new Date(
+          video.snippet.publishedAt
+        ).toLocaleDateString("fr-FR")}</p>
         <p class="title">${renderTitle(video.snippet.title, 50)}</p>
       </div>
       <a href="https://www.youtube.com/watch?v=${video.id.videoId}"></a>
     </div>
   `;
+};
+
+const playAudio = () => {
+  const audio = document.querySelector("audio");
+  audio.volume = 0.5;
+  audio.play();
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -134,5 +150,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (event.target.href !== undefined) {
       chrome.tabs.create({ url: event.target.href });
     }
+  });
+
+  document.getElementById("fretille").addEventListener("click", () => {
+    playAudio();
   });
 });
