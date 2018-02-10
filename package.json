@@ -1,6 +1,10 @@
 {
-  "name": "chrome-test",
-  "version": "0.1.0",
+  "name": "Monsieur-Sapin-EXT",
+  "version": "3.0.0",
+  "description": "Suivez l'actualité de Monsieur Sapin",
+  "main": "index.js",
+  "repository": "git@github.com:volchan/Monsieur-Sapin-EXT.git",
+  "author": "stephane de la torre <s.dlt@hotmail.fr>",
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
