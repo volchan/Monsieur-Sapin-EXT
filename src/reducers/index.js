@@ -1,7 +1,7 @@
 import { combineReducers } from "redux";
 
-import streamReducer from "./streamReducer";
+import clipReducer from "./clipReducer";
 
 export default combineReducers({
-  auth: streamReducer
+  clips: clipReducer
 });

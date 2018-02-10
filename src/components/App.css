@@ -1,0 +1,34 @@
+@font-face {
+    font-family: 'OpenSans';
+    src: url('../assets/fonts/OpenSans-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'OpenSans-bold';
+    src: url('../assets/fonts/OpenSansCondensed-Bold.ttf');
+}
+
+
+body {
+  margin: 0;
+  width: 400px;
+  height: 600px;
+
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+.site {
+  display: flex;
+  flex-direction: column;
+  background-color: #fafafa;
+  height: 100%;
+  width: 100%;
+}
+
+.site::-webkit-scrollbar {
+  display: none;
+}

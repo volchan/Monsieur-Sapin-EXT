@@ -1,0 +1,23 @@
+.header {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.banner {
+  flex: 2;
+  width: 100%;
+  background-image: url("../assets/banner.png");
+}
+
+#fretille {
+  position: absolute;
+  top: 20px;
+  right: 97px;
+  height: 37px;
+  width: 37px;
+  border-radius: 50%;
+}

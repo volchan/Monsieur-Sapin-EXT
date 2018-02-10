@@ -7,7 +7,7 @@ const keys = require("./config/keys");
 let notified = false;
 let created_at = null;
 
-const channel = "mistermv";
+const channel = keys.channel;
 const titleLiveData = "Monsieur Sapin est en live !";
 const titleVodData = "Monsieur Sapin à lancé une VOD !";
 const channelLight = "Monsieur Sapin";
@@ -79,7 +79,8 @@ const resetNotification = () => {
   console.log("resetNotification!!!!");
   chrome.storage.local.set(
     {
-      notified: false
+      notified: false,
+      stream: null
     },
     () => {
       chrome.browserAction.setTitle({
@@ -95,7 +96,8 @@ const notify = (streamType, stream) => {
   chrome.storage.local.set(
     {
       notified: true,
-      created_at: stream.created_at
+      created_at: stream.created_at,
+      stream: stream
     },
     () => {
       const streamTitle = stream.channel.status;

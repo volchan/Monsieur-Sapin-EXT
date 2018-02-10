@@ -4,19 +4,28 @@ import { connect } from "react-redux";
 
 import * as actions from "../actions";
 
+import Header from "./Header";
+import Content from "./Content";
+
+import "./App.css";
+
 class App extends Component {
   componentDidMount() {
+    window.addEventListener("click", event => {
+      if (event.target.href !== undefined) {
+        chrome.tabs.create({ url: event.target.href });
+      }
+    });
   }
 
   render() {
     return (
-      <div>
-        <BrowserRouter>
-          <div className="site">
-            <h1>hello</h1>
-          </div>
-        </BrowserRouter>
-      </div>
+      <BrowserRouter>
+        <div className="site">
+          <Header />
+          <Content />
+        </div>
+      </BrowserRouter>
     );
   }
 }

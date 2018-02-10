@@ -10,9 +10,11 @@
     "axios": "^0.17.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-map-components": "^1.0.12",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.1",
+    "react-twitter-widgets": "^1.7.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
   },
@@ -28,6 +30,7 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
-    "copy-webpack-plugin": "^4.4.1"
+    "copy-webpack-plugin": "^4.4.1",
+    "img-loader": "^2.0.1"
   }
 }

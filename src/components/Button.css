@@ -1,0 +1,31 @@
+.btn {
+  display: none;
+  color: #6f9e5a;
+  align-items: center;
+  padding: 5px;
+  font-family: 'OpenSans';
+  font-size: 20px;
+  justify-content: center;
+  z-index: 3 ;
+}
+
+.btn a {
+  color: #fff;
+  width: 100%;
+  font-size: 18px;
+  font-family: 'OpenSans-bold';
+  padding: 3px 0px;
+  border-radius: 4px;
+  background-color: #6f9e5a;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.btn a:hover {
+  background-color: #83b96b;
+}
+
+.btn.active {
+  display: flex;
+}

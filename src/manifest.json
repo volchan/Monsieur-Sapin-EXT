@@ -20,5 +20,5 @@
       "website": "www.volchan.fr",
       "email": "contact@volchan.fr"
   },
-  "content_security_policy": "script-src 'self' https://*.twitter.com https://*.twitter.com https://*.twimg.com; object-src 'self'; style-src 'self' data: chrome-extension-resource: 'unsafe-inline'"
+  "content_security_policy": "script-src 'self' 'unsafe-eval' https://*.twitter.com https://*.twitter.com https://*.twimg.com; object-src 'self';"
 }
