@@ -8,6 +8,7 @@ import Header from "./Header";
 import Content from "./Content";
 
 import "./App.css";
+import "../scripts/twitterWidget";
 
 class App extends Component {
   componentDidMount() {
