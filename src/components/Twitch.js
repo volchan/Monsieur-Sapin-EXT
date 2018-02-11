@@ -60,10 +60,14 @@ export default class Twitch extends Component {
   }
 
   componentDidMount() {
-    const url = `https://api.twitch.tv/kraken/clips/top?channel=${
-      keys.channel
-    }&limit=20`;
-    this.fetchClips(url, keys.twitchClientID);
+    chrome.alarms.onAlarm.addListener(alarm => {
+      if (alarm.name == "twitch") {
+        const url = `https://api.twitch.tv/kraken/clips/top?channel=${
+          keys.channel
+        }&limit=20`;
+        this.fetchClips(url, keys.twitchClientID);
+      }
+    });
   }
 
   render() {

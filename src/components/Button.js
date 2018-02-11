@@ -4,7 +4,11 @@ import "./Button.css";
 
 export default class Botton extends Component {
   componentDidMount() {
-    this.checkLive();
+    chrome.alarms.onAlarm.addListener(alarm => {
+      if (alarm.name == "live") {
+        this.checkLive();
+      }
+    });
   }
 
   checkLive() {
@@ -14,12 +18,12 @@ export default class Botton extends Component {
         stream: ""
       },
       items => {
-        console.log(items.stream);
+        console.log(items);
         if (items.stream) {
-          twitchBtn.innerText = "Monsieur sapin est en live!"
+          twitchBtn.innerText = "Monsieur sapin est en live!";
         }
       }
-    )
+    );
   }
 
   render() {

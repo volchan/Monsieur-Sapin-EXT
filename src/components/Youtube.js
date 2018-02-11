@@ -43,11 +43,15 @@ export default class Youtube extends Component {
   }
 
   componentDidMount() {
-    const params = `?part=snippet&maxResults=25&order=date&type=video&channelId=${
-      keys.ytChannelID
-    }&key=${keys.ytClientID}`;
-    const url = `https://www.googleapis.com/youtube/v3/search${params}`;
-    this.fetchVideos(url);
+    chrome.alarms.onAlarm.addListener(alarm => {
+      if (alarm.name == "youtube") {
+        const params = `?part=snippet&maxResults=25&order=date&type=video&channelId=${
+          keys.ytChannelID
+        }&key=${keys.ytClientID}`;
+        const url = `https://www.googleapis.com/youtube/v3/search${params}`;
+        this.fetchVideos(url);
+      }
+    })
   }
 
   render() {

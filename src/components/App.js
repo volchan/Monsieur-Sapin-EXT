@@ -12,6 +12,10 @@ import "../scripts/twitterWidget";
 
 class App extends Component {
   componentDidMount() {
+    chrome.alarms.create("youtube", { when: Date.now() + 1000 })
+    chrome.alarms.create("twitch", { when: Date.now() + 1000 });
+    chrome.alarms.create("twitter", { when: Date.now() + 1000 });
+    chrome.alarms.create("live", { when: Date.now() + 1000, periodInMinutes: 1 });
     window.addEventListener("click", event => {
       if (event.target.href !== undefined) {
         chrome.tabs.create({ url: event.target.href });

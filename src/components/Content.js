@@ -7,6 +7,33 @@ import Button from "./Button";
 import "./Content.css";
 
 export default class Content extends Component {
+  componentDidMount() {
+    console.log("before alert:", new Date);
+    chrome.alarms.onAlarm.addListener(alarm => {
+      if (alarm.name == "twitter") {
+        console.log("inside alert:", new Date);
+        this.buildTwitterFeed();
+      }
+    });
+  }
+
+  buildTwitterFeed() {
+    twttr.widgets.createTimeline(
+      {
+        sourceType: "profile",
+        screenName: "monsieursapin_"
+      },
+      document.getElementById("twitter"),
+      {
+        lang: "fr",
+        width: "100%",
+        height: "100%",
+        linkColor: "#6f9e5a",
+        chrome: "noheader noscrollbar nofooter transparent noborders"
+      }
+    );
+  }
+
   render() {
     return (
       <div className="content">
@@ -24,17 +51,7 @@ export default class Content extends Component {
         />
         <Twitch />
         <Youtube />
-        <div id="twitter" className="tab-content">
-          <a
-            className="twitter-timeline"
-            href="https://twitter.com/monsieursapin_"
-            data-lang="fr"
-            data-width="100%"
-            data-height="100%"
-            data-link-color="#6f9e5a"
-            data-chrome="noheader noscrollbar nofooter transparent noborders"
-          />
-        </div>
+        <div id="twitter" className="tab-content" />
       </div>
     );
   }
