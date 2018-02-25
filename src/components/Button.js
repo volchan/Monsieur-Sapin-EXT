@@ -18,7 +18,6 @@ export default class Botton extends Component {
         stream: ""
       },
       items => {
-        console.log(items);
         if (items.stream) {
           twitchBtn.innerText = "Monsieur sapin est en live!";
         }

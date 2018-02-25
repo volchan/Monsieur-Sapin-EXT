@@ -3,17 +3,17 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-}
-.tab-content {
-  flex: 9;
-  display: none;
-  padding: 5px;
-  padding-top: 0;
   overflow-y: scroll;
 }
 
-.tab-content::-webkit-scrollbar {
+.content::-webkit-scrollbar {
   display: none;
+}
+
+.tab-content {
+  flex: 9;
+  padding: 5px;
+  padding-top: 0;
 }
 
 .tab-content.active {

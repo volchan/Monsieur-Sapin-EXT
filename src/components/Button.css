@@ -1,5 +1,5 @@
 .btn {
-  display: none;
+  display: flex;
   color: #6f9e5a;
   align-items: center;
   padding: 5px;
@@ -24,8 +24,4 @@
 
 .btn a:hover {
   background-color: #83b96b;
-}
-
-.btn.active {
-  display: flex;
 }

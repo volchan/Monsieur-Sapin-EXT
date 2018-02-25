@@ -1,51 +1,50 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import _ from "lodash";
+
+import keys from "../config/keys";
 
 import "./Navbar.css";
 
 export default class Navbar extends Component {
-  componentDidMount() {
-    const tabLinks = document.querySelectorAll(".tab-link");
-    tabLinks.forEach(tabLink => {
-      tabLink.addEventListener("click", ({ target }) => {
-        const tabId = target.dataset.tab;
-        const activeTab = document.getElementsByClassName("tab-link active")[0];
-
-        const tabContent = document.getElementById(tabId);
-        const activeTabContent = document.getElementsByClassName(
-          "tab-content active"
-        )[0];
-
-        const btn = document.getElementById(`${tabId}-btn`);
-        const activeBtn = document.getElementsByClassName("btn active")[0];
-        const twitchBtn = document.getElementById("twitch-btn");
-
-        activeTab.classList.remove("active");
-        target.classList.add("active");
-
-        if (btn != null) {
-          activeBtn.classList.remove("active");
-          btn.classList.add("active");
-        } else {
-          activeBtn.classList.remove("active");
-          twitchBtn.classList.add("active");
-        }
-        activeTabContent.classList.remove("active");
-        tabContent.classList.add("active");
-      });
+  removeActiveClasses(elem) {
+    const elements = document.querySelectorAll(elem);
+    _.each(elements, el => {
+      el.classList.remove("active");
     });
+  }
+
+  handleClick(clicked) {
+    console.log(clicked);
+    this.removeActiveClasses(".tab-link");
+    const tab = document.getElementById(`${clicked}-tab`);
+    tab.classList.add("active");
+    this.props.onTabClick(clicked);
   }
 
   render() {
     return (
       <div className="nav">
         <div className="tabs">
-          <div className="tab-link active" data-tab="twitch">
+          <div
+            className="tab-link active"
+            onClick={() => this.handleClick("twitch")}
+            id="twitch-tab"
+          >
             CLIPS TWITCH
           </div>
-          <div className="tab-link" data-tab="youtube">
+          <div
+            className="tab-link"
+            onClick={() => this.handleClick("youtube")}
+            id="youtube-tab"
+          >
             YOUTUBE
           </div>
-          <div className="tab-link" data-tab="twitter">
+          <div
+            className="tab-link"
+            onClick={() => this.handleClick("twitter")}
+            id="twitter-tab"
+          >
             TWITTER
           </div>
         </div>

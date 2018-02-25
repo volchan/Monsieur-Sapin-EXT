@@ -1,6 +1,9 @@
 import axios from "axios";
 import newNotification from "./scripts/notification";
 import checkUpdate from "./scripts/update";
+import fetchTwitchClips from "./scripts/twitchClips";
+import fetchYoutubeVideos from "./scripts/youtubeVideos";
+import fetchTwitterTimeline from "./scripts/twitterTimeline";
 
 const keys = require("./config/keys");
 
@@ -18,12 +21,17 @@ const fetchStreamInfos = async () => {
   const res = await axios.get(streamUrl);
   const stream = res.data.stream;
   console.log("twitch response:", stream);
+  sendStreamToReact(stream)
   if (stream) {
     checkStreamStatus(stream);
   } else {
     resetNotification();
   }
 };
+
+const sendStreamToReact = stream => {
+  chrome.runtime.sendMessage({stream: stream});
+}
 
 const checkStreamStatus = stream => {
   console.log("checkStreamStatus");
@@ -120,4 +128,23 @@ const notify = (streamType, stream) => {
 };
 
 checkUpdate();
-setInterval(fetchStreamInfos, 5000);
+chrome.alarms.create("live", { when: Date.now() + 1000, periodInMinutes: 0.1 });
+chrome.alarms.create("twitch", { when: Date.now() + 1000, periodInMinutes: 0.1 });
+chrome.alarms.create("youtube", { when: Date.now() + 1000, periodInMinutes: 0.1 })
+chrome.alarms.create("twitter", { when: Date.now() + 1000, periodInMinutes: 5 });
+chrome.alarms.onAlarm.addListener(alarm => {
+  switch (alarm.name) {
+    case "live":
+      fetchStreamInfos();
+      break;
+    case "twitch":
+      fetchTwitchClips();
+      break;
+    case "youtube":
+      fetchYoutubeVideos();
+      break;
+    case "twitter":
+      fetchTwitterTimeline();
+      break;
+  }
+});
