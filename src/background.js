@@ -21,7 +21,7 @@ const fetchStreamInfos = async () => {
   const res = await axios.get(streamUrl);
   const stream = res.data.stream;
   console.log("twitch response:", stream);
-  sendStreamToReact(stream)
+  sendStreamToReact(stream);
   if (stream) {
     checkStreamStatus(stream);
   } else {
@@ -30,8 +30,8 @@ const fetchStreamInfos = async () => {
 };
 
 const sendStreamToReact = stream => {
-  chrome.runtime.sendMessage({stream: stream});
-}
+  chrome.runtime.sendMessage({ stream: stream });
+};
 
 const checkStreamStatus = stream => {
   console.log("checkStreamStatus");
@@ -128,23 +128,35 @@ const notify = (streamType, stream) => {
 };
 
 checkUpdate();
-chrome.alarms.create("live", { when: Date.now() + 1000, periodInMinutes: 0.1 });
-chrome.alarms.create("twitch", { when: Date.now() + 1000, periodInMinutes: 0.1 });
-chrome.alarms.create("youtube", { when: Date.now() + 1000, periodInMinutes: 0.1 })
-chrome.alarms.create("twitter", { when: Date.now() + 1000, periodInMinutes: 5 });
-chrome.alarms.onAlarm.addListener(alarm => {
-  switch (alarm.name) {
-    case "live":
-      fetchStreamInfos();
-      break;
-    case "twitch":
-      fetchTwitchClips();
-      break;
-    case "youtube":
-      fetchYoutubeVideos();
-      break;
-    case "twitter":
-      fetchTwitterTimeline();
-      break;
-  }
-});
+const live = setInterval(() => {
+  fetchStreamInfos();
+}, 5000);
+const twitch = setInterval(() => {
+  fetchTwitchClips();
+}, 5000);
+const youtube = setInterval(() => {
+  fetchYoutubeVideos();
+}, 5000);
+// const twitter = setInterval(()=>{
+//   fetchTwitterTimeline()
+// }, 5000);
+// chrome.alarms.create("live", { when: Date.now() + 1000, periodInMinutes: 0.1 });
+// chrome.alarms.create("twitch", { when: Date.now() + 1000, periodInMinutes: 0.1 });
+// chrome.alarms.create("youtube", { when: Date.now() + 1000, periodInMinutes: 0.1 })
+// chrome.alarms.create("twitter", { when: Date.now() + 1000, periodInMinutes: 5 });
+// chrome.alarms.onAlarm.addListener(alarm => {
+//   switch (alarm.name) {
+//     case "live":
+//       fetchStreamInfos();
+//       break;
+//     case "twitch":
+//       fetchTwitchClips();
+//       break;
+//     case "youtube":
+//       fetchYoutubeVideos();
+//       break;
+//     case "twitter":
+//       fetchTwitterTimeline();
+//       break;
+//   }
+// });

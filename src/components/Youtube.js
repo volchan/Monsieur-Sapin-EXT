@@ -10,16 +10,22 @@ export default class Youtube extends Component {
     super(props);
 
     this.state = {
-      youtubeVods: null
+      youtubeVods: null,
+      mounted: false
     };
   }
 
   componentDidMount() {
+    this.setState({ mounted: true });
     chrome.runtime.onMessage.addListener(request => {
-      if (request.youtubeVods) {
+      if (request.youtubeVods && this.state.mounted) {
         this.setState({ youtubeVods: request.youtubeVods });
       }
     });
+  }
+
+  componentWillUnmount() {
+    this.setState({ mounted: false });
   }
 
   renderContent() {
