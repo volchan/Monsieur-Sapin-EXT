@@ -1,7 +1,7 @@
 import axios from "axios";
 import keys from "../config/keys";
 
-const fetchTwitchClips = async () => {
+const fetchTwitchClips = async sendResponse => {
   const twitchUrl = `https://api.twitch.tv/kraken/clips/top?channel=${
     keys.channel
   }&limit=20`;
@@ -12,8 +12,7 @@ const fetchTwitchClips = async () => {
     }
   });
 
-  const clips = twitchRes.data.clips;
-  chrome.runtime.sendMessage({ twitchClips: clips });
+  return sendResponse({ clips: twitchRes.data.clips });
 };
 
 export default fetchTwitchClips;

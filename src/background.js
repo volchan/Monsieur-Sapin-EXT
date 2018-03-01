@@ -131,18 +131,23 @@ checkUpdate();
 const live = setInterval(() => {
   fetchStreamInfos();
 }, 5000);
-const twitch = setInterval(() => {
-  fetchTwitchClips();
-}, 5000);
-const youtube = setInterval(() => {
-  fetchYoutubeVideos();
-}, 5000);
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+  if (request.from == "twitch") {
+    fetchTwitchClips(sendResponse);
+    return true;
+  } else if (request.from == "youtube") {
+    fetchYoutubeVideos(sendResponse);
+    return true;
+  }
+});
+
 // const twitter = setInterval(()=>{
 //   fetchTwitterTimeline()
 // }, 5000);
 // chrome.alarms.create("live", { when: Date.now() + 1000, periodInMinutes: 0.1 });
 // chrome.alarms.create("twitch", { when: Date.now() + 1000, periodInMinutes: 0.1 });
-// chrome.alarms.create("youtube", { when: Date.now() + 1000, periodInMinutes: 0.1 })
+// chrome.alarms.create("youtube", { when: Date.now() + 1000, periodInMinutes: 0.1 });
 // chrome.alarms.create("twitter", { when: Date.now() + 1000, periodInMinutes: 5 });
 // chrome.alarms.onAlarm.addListener(alarm => {
 //   switch (alarm.name) {

@@ -10,22 +10,19 @@ export default class Twitch extends Component {
     super(props);
 
     this.state = {
-      twitchClips: null,
-      mounted: true
+      twitchClips: null
     };
   }
 
   componentDidMount() {
-    this.setState({ mounted: true });
-    chrome.runtime.onMessage.addListener(request => {
-      if (request.twitchClips && this.state.mounted) {
-        this.setState({ twitchClips: request.twitchClips });
+    chrome.runtime.sendMessage({ from: "twitch" }, (response) => {
+      if (chrome.runtime.lastError) {
+          console.log("ERROR: ", chrome.runtime.lastError);
+      } else {
+          const clips = response.clips;
+          this.setState({ twitchClips: clips });
       }
     });
-  }
-
-  componentWillUnmount() {
-    this.setState({ mounted: false });
   }
 
   renderContent() {
