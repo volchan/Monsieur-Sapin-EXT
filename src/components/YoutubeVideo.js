@@ -19,7 +19,7 @@ const YoutubeVideo = ({ video }) => {
         ).toLocaleDateString("fr-FR")}</p>
         <p className="title">{renderTitle(video.snippet.title, 50)}</p>
       </div>
-      <a href="https://www.youtube.com/watch?v=${video.id.videoId}"></a>
+      <a href={`https://www.youtube.com/watch?v=${video.id.videoId}`}></a>
     </div>
   );
 };
