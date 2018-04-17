@@ -3,32 +3,31 @@ import React, { Component } from "react";
 import "./Button.css";
 
 export default class Botton extends Component {
-  componentDidMount() {
-    chrome.alarms.onAlarm.addListener(alarm => {
-      if (alarm.name == "live") {
-        this.checkLive();
-      }
-    });
+  displayText(id, stream, text) {
+    switch (id) {
+      case "youtube-btn":
+        return text;
+        break;
+      default:
+        return this.displayTwitchText(stream, text);
+    }
   }
 
-  checkLive() {
-    const twitchBtn = document.getElementById("twitch-btn").childNodes[0];
-    chrome.storage.local.get(
-      {
-        stream: ""
-      },
-      items => {
-        if (items.stream) {
-          twitchBtn.innerText = "Monsieur sapin est en live!";
-        }
-      }
-    );
+  displayTwitchText(stream, text) {
+    switch (stream) {
+      case null:
+        return text;
+        break;
+      default:
+        return "Monsieur sapin est en live!";
+    }
   }
 
   render() {
+    const { id, classes, href, stream, text } = this.props;
     return (
-      <div id={this.props.id} className={this.props.classes}>
-        <a href={this.props.href}>{this.props.text}</a>
+      <div id={id} className={classes}>
+        <a href={href}>{this.displayText(id, stream, text)}</a>
       </div>
     );
   }

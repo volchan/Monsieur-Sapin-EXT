@@ -8,7 +8,7 @@ const fetchTwitchClips = async sendResponse => {
   const twitchRes = await axios.get(twitchUrl, {
     headers: {
       Accept: "application/vnd.twitchtv.v5+json",
-      "Client-ID": keys.twitchClientID
+      "client-id": keys.twitchClientID
     }
   });
 

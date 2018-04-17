@@ -70,7 +70,7 @@ class App extends Component {
     return (
       <div className="site">
         <div className="header">
-          <Header />
+          <Header stream={this.state.stream} />
           <Navbar onTabClick={this.handleTabClick} />
         </div>
         {this.displayBtns()}
