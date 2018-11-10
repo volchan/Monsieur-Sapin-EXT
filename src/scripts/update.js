@@ -7,7 +7,8 @@ const checkUpdate = () => {
         case "install":
           newNotification(
             "Installation de l'extension",
-            "Merci d'avoir installé l'extension."
+            "Merci d'avoir installé l'extension.",
+            null
           );
           break;
         case "update":
@@ -27,7 +28,8 @@ const checkVersion = details => {
   if (previousVersion < currentVersion) {
     newNotification(
       `Mise à jour ${currentVersion}`,
-      "L'extension à bien été mise à jour."
+      "L'extension à bien été mise à jour.",
+      null
     );
   }
 };

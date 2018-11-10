@@ -122,7 +122,7 @@ const notify = (streamType, stream) => {
           notifTitle;
       }
 
-      newNotification(notifTitle, streamTitle);
+      newNotification(notifTitle, streamTitle, "live");
     }
   );
 };

@@ -28,11 +28,11 @@ class App extends Component {
     });
 
     document.addEventListener("DOMContentLoaded", () => {
-      window.addEventListener("click", event => {
-        if (event.target.href !== undefined) {
-          chrome.tabs.create({ url: event.target.href });
-        }
-      });
+      // window.addEventListener("click", event => {
+      //   if (event.target.href !== undefined) {
+      //     chrome.tabs.create({ url: event.target.href });
+      //   }
+      // });
     });
   }
 
